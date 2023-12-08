@@ -11,7 +11,8 @@ public class application
 	public static JButton sidePanelButton_chooseFile				 	= new JButton();
 	public static JButton sidePanelButton_linearContrast				= new JButton();
 	public static JButton sidePanelButton_homogeneousAveragingFilter 	= new JButton();
-	public static JButton sidePanelButton_gaussianFilter				= new JButton();	
+	public static JButton sidePanelButton_gaussianFilter				= new JButton();
+	public static JButton sidePanelButton_laplacianOfGaussContrast  	= new JButton();
 	
 	public static String filePath;
 	
@@ -107,6 +108,26 @@ public class application
 				}
 			}
 		);	
+		
+		sidePanelButton_laplacianOfGaussContrast.addActionListener
+		(
+			new ActionListener()
+			{
+				@Override
+				public void actionPerformed(ActionEvent event)
+				{
+					try
+					{
+						project.processor(4, 0, filePath);
+					} 
+					catch (Exception error) 
+					{ 
+			            System.err.println("Oops! " + error);
+			            System.exit(0);
+			        }
+				}
+			}
+		);
 	}
 	
 	public static void connectMouseEvent()
@@ -182,6 +203,24 @@ public class application
 					}
 				}
 		);
+		
+		sidePanelButton_laplacianOfGaussContrast.addMouseListener
+		(
+				new MouseAdapter()
+				{
+					public void mouseEntered(MouseEvent event)
+					{
+						sidePanelButton_laplacianOfGaussContrast.setBackground(new Color(0,0,0));
+						sidePanelButton_laplacianOfGaussContrast.setForeground(new Color(254,230,0));
+					}
+					
+					public void mouseExited(MouseEvent event)
+					{
+						sidePanelButton_laplacianOfGaussContrast.setBackground(new Color(254,230,0));
+						sidePanelButton_laplacianOfGaussContrast.setForeground(new Color(0,0,0));
+					}
+				}
+		);
 	}
 	
 	public static void showGUI()
@@ -201,7 +240,7 @@ public class application
 		sidePanel.add(sidePanelButton_linearContrast);
 		sidePanel.add(sidePanelButton_homogeneousAveragingFilter);
 		sidePanel.add(sidePanelButton_gaussianFilter);
-		
+		sidePanel.add(sidePanelButton_laplacianOfGaussContrast);		
 		
 		sidePanelButton_chooseFile.setBounds(0,0,240,40);
 		sidePanelButton_chooseFile.setText("CHOOSE FILE");
@@ -226,6 +265,12 @@ public class application
 		sidePanelButton_gaussianFilter.setBackground(new Color(254,230,0));
 		sidePanelButton_gaussianFilter.setBorderPainted(false);
 		sidePanelButton_gaussianFilter.setForeground(new Color(0,0,0));
+		
+		sidePanelButton_laplacianOfGaussContrast.setBounds(0,240,240,40);
+		sidePanelButton_laplacianOfGaussContrast.setText("LOG CONTRAST");
+		sidePanelButton_laplacianOfGaussContrast.setBackground(new Color(254,230,0));
+		sidePanelButton_laplacianOfGaussContrast.setBorderPainted(false);
+		sidePanelButton_laplacianOfGaussContrast.setForeground(new Color(0,0,0));
 		
 		connectResizeEvent();
 		connectActionEvent();

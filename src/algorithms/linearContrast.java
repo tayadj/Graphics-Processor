@@ -66,15 +66,15 @@ public class linearContrast
 		{
 			for (int y = 0; y < sourceImage.getHeight(null); ++y)
 			{
-				valueA = ((processingImage.getRGB(x, y)) >> 24) & 0xff;
+				valueA = 255;
 				valueR = ((processingImage.getRGB(x, y)) >> 16) & 0xff;
 				valueG = ((processingImage.getRGB(x, y)) >> 8) & 0xff;
 				valueB = ((processingImage.getRGB(x, y))) & 0xff;
 				
-				if (minValueA != maxValueA) { valueA = 255 * (valueA - minValueA) / (maxValueA - minValueA); }
 				if (minValueR != maxValueR) { valueR = 255 * (valueR - minValueR) / (maxValueR - minValueR); }
 				if (minValueG != maxValueG) { valueG = 255 * (valueG - minValueG) / (maxValueG - minValueG); }
 				if (minValueB != maxValueB) { valueB = 255 * (valueB - minValueB) / (maxValueB - minValueB); }
+				
 				valueRGB = (valueA << 24) | (valueR << 16) | (valueG << 8) | valueB;
 				resultImage.setRGB(x, y, valueRGB);				
 			}

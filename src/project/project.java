@@ -48,6 +48,11 @@ public class project {
 					resultImage = gaussianFilter.process(sourceImage, inputFile, flag);
 					break;
 				}
+				case 4:
+				{
+					resultImage = laplacianOfGaussContrast.process(sourceImage, inputFile);
+					break;
+				}	
 			}
 			
 			try
