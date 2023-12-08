@@ -18,7 +18,6 @@ public class application
 			{
 			    public void componentResized(ComponentEvent event) {
 			    	sidePanel.setBounds(20, 20, 200, mainFrame.getHeight() - 80);
-			    	System.out.println(mainFrame.getHeight() + " " + mainFrame.getWidth());
 			    }
 			}
 		);
@@ -35,14 +34,13 @@ public class application
 				{
 					try
 					{
-						project.processor();
+						project.processor(1);
 					} 
 					catch (Exception error) 
 					{ 
-			            System.out.println("Oops! " + error);
+			            System.err.println("Oops! " + error);
 			            System.exit(0);
 			        }
-					System.out.println("Cool");
 				}
 			}
 		);
@@ -91,65 +89,5 @@ public class application
 		connectActionEvent();
 		connectMouseEvent();
 	}
-	
-	/*public static JFrame mainFrame;
-	public static JMenuBar mainBar;
-	public static JMenu mainMenu;
-	public static JMenuItem mainMenu_linearContrastAlgorithm;
-	
-	
-	public static void showGUI()
-	{		
-		mainMenu_linearContrastAlgorithm = new JMenuItem("Linear Contrast Algorithm");
-		mainMenu_linearContrastAlgorithm.addActionListener
-		(
-			new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent event)
-				{
-					try
-					{
-						project.processor();
-					} 
-					catch (Exception error) 
-					{ 
-			            System.out.println("Oops! " + error);
-			            System.exit(0);
-			        }
-				}
-			}
-		);
-		mainMenu_linearContrastAlgorithm.addMouseListener
-		(
-			new MouseAdapter()
-			{
-				public void mouseEntered(MouseEvent event)
-				{
-					mainMenu_linearContrastAlgorithm.setBackground(new Color(200,200,187));
-				}
-				
-				public void mouseExited(MouseEvent event)
-				{
-					mainMenu_linearContrastAlgorithm.setBackground(new Color(100,200,187));
-				}
-			}
-		);
-		
-		mainMenu = new JMenu("Algorithms");
-		mainMenu.add(mainMenu_linearContrastAlgorithm);
-		
-		mainBar = new JMenuBar();
-		mainBar.add(mainMenu);
-		mainBar.setBackground(new Color(200,200,187));
-		
-		
-		mainFrame = new JFrame("Graphics Processor");
-		mainFrame.setSize(720,540);
-		mainFrame.setLayout(null);
-		mainFrame.setVisible(true);	
-		mainFrame.setJMenuBar(mainBar);
-	}
-	*/
 
 }

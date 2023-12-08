@@ -12,21 +12,38 @@ public class project {
 	public static BufferedImage processingImage;
 	public static BufferedImage resultImage;
 	public static String inputPath = "C:/Education/Java/Eclipse/eclipse-workspace/GraphicsProcessor/data/Fig3.15(a)1top.bmp";
-	public static String outputPath = "C:/Education/Java/Eclipse/eclipse-workspace/GraphicsProcessor/data/JavaResult___.png";
+	public static String outputPath = "C:/Education/Java/Eclipse/eclipse-workspace/GraphicsProcessor/data/JavaResult.png";
 	public static Image sourceImage;
 	public static File inputFile;
 	public static File outputFile;
 	
-	public static void processor() 
+	public static void processor(int mode) 
 	throws IOException
 	{
 		try
 		{
-			resultImage = linearContrast.process(processingImage, sourceImage, inputFile);
+			switch (mode)
+			{
+				case 1:
+				{
+					resultImage = linearContrast.process(processingImage, sourceImage, inputFile);
+				}
+			}
+			
+			try
+			{
+				outputFile = new File(outputPath); 
+	            ImageIO.write(resultImage, "png", outputFile); 
+			}
+			catch (Exception error) 
+			{ 
+	            System.err.println("Oops! " + error);
+	            System.exit(0);
+	        }			
 		} 
 		catch (Exception error) 
 		{ 
-            System.out.println("Oops! " + error);
+            System.err.println("Oops! " + error);
             System.exit(0);
         }		
 	}
@@ -42,23 +59,11 @@ public class project {
 		}
 		catch (Exception error) 
 		{ 
-            System.out.println("Oops! " + error);
+            System.err.println("Oops! " + error);
             System.exit(0);
         }
 		
 		application.showGUI();
-		processor();
-		
-		try
-		{
-			outputFile = new File(outputPath); 
-            ImageIO.write(resultImage, "png", outputFile); 
-		}
-		catch (Exception error) 
-		{ 
-            System.out.println("Oops! " + error);
-            System.exit(0);
-        }
 		
 	}
 	
