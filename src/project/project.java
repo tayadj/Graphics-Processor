@@ -11,8 +11,10 @@ public class project {
 
 	public static BufferedImage processingImage;
 	public static BufferedImage resultImage;
-	public static String inputPath = "C:/Education/Java/Eclipse/eclipse-workspace/GraphicsProcessor/data/Fig3.15(a)1top.bmp";
-	public static String outputPath = "C:/Education/Java/Eclipse/eclipse-workspace/GraphicsProcessor/data/JavaResult.png";
+	//public static String inputPath = "C:/Education/Java/Eclipse/eclipse-workspace/GraphicsProcessor/data/Fig3.15(a)1top.bmp";
+	//public static String inputPath = "C:/Education/Java/Eclipse/eclipse-workspace/GraphicsProcessor/data/Fig5.04(i).bmp";
+	public static String inputPath = "C:/Education/Java/Eclipse/eclipse-workspace/GraphicsProcessor/data/Fig3.35(a).bmp";
+	public static String outputPath = "C:/Education/Java/Eclipse/eclipse-workspace/GraphicsProcessor/data/JavaResult";
 	public static Image sourceImage;
 	public static File inputFile;
 	public static File outputFile;
@@ -26,13 +28,19 @@ public class project {
 			{
 				case 1:
 				{
-					resultImage = linearContrast.process(processingImage, sourceImage, inputFile);
+					resultImage = linearContrast.process(sourceImage, inputFile);
+					break;
+				}
+				case 2:
+				{
+					resultImage = homogeneousAveragingFilter.process(sourceImage, inputFile, 1);
+					break;
 				}
 			}
 			
 			try
 			{
-				outputFile = new File(outputPath); 
+				outputFile = new File(outputPath+mode+3+".png"); 
 	            ImageIO.write(resultImage, "png", outputFile); 
 			}
 			catch (Exception error) 
@@ -51,7 +59,6 @@ public class project {
 	public static void main(String args[])
 	throws IOException
 	{
-		
 		try
 		{
 			inputFile = new File(inputPath);
@@ -64,7 +71,6 @@ public class project {
         }
 		
 		application.showGUI();
-		
 	}
 	
 }

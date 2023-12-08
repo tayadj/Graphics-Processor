@@ -7,9 +7,11 @@ import java.io.*;
 
 public class linearContrast
 {
-	public static BufferedImage resultImage;
 	
-	public static BufferedImage process(BufferedImage processingImage, Image sourceImage, File inputFile)
+	public static BufferedImage resultImage;
+	public static BufferedImage processingImage;
+	
+	public static BufferedImage process(Image sourceImage, File inputFile)
 	throws IOException
 	{
 		processingImage = new BufferedImage(sourceImage.getWidth(null), sourceImage.getHeight(null), BufferedImage.TYPE_INT_ARGB);
@@ -80,6 +82,5 @@ public class linearContrast
 		
 		return resultImage;
 	}
-	
 	
 }

@@ -6,9 +6,10 @@ import java.awt.*;
 
 public class application
 {
-	public static JFrame mainFrame 									= new JFrame();
-	public static JPanel sidePanel 									= new JPanel();
-	public static JButton sidePanelButton_linearContrast			= new JButton();
+	public static JFrame mainFrame 										= new JFrame();
+	public static JPanel sidePanel 										= new JPanel();
+	public static JButton sidePanelButton_linearContrast				= new JButton();
+	public static JButton sidePanelButton_homogeneousAveragingFilter 	= new JButton();
 	
 	public static void connectResizeEvent() 
 	{
@@ -44,6 +45,26 @@ public class application
 				}
 			}
 		);
+		
+		sidePanelButton_homogeneousAveragingFilter.addActionListener
+		(
+			new ActionListener()
+			{
+				@Override
+				public void actionPerformed(ActionEvent event)
+				{
+					try
+					{
+						project.processor(2);
+					} 
+					catch (Exception error) 
+					{ 
+			            System.err.println("Oops! " + error);
+			            System.exit(0);
+			        }
+				}
+			}
+		);
 	}
 	
 	public static void connectMouseEvent()
@@ -62,7 +83,23 @@ public class application
 						sidePanelButton_linearContrast.setBackground(new Color(254,230,0));
 					}
 				}
-			);
+		);
+		
+		sidePanelButton_homogeneousAveragingFilter.addMouseListener
+		(
+				new MouseAdapter()
+				{
+					public void mouseEntered(MouseEvent event)
+					{
+						sidePanelButton_homogeneousAveragingFilter.setBackground(new Color(255,255,255));
+					}
+					
+					public void mouseExited(MouseEvent event)
+					{
+						sidePanelButton_homogeneousAveragingFilter.setBackground(new Color(254,230,0));
+					}
+				}
+		);
 	}
 	
 	public static void showGUI()
@@ -78,12 +115,19 @@ public class application
 		sidePanel.setBounds(20, 20, 200, 440);
 		sidePanel.setBackground(new Color(255,255,255));
 		sidePanel.add(sidePanelButton_linearContrast);
+		sidePanel.add(sidePanelButton_homogeneousAveragingFilter);
 		
 		sidePanelButton_linearContrast.setBounds(0,0,200,60);
 		sidePanelButton_linearContrast.setText("LINEAR CONTRAST");
 		sidePanelButton_linearContrast.setBackground(new Color(254,230,0));
 		sidePanelButton_linearContrast.setBorderPainted(false);
 		sidePanelButton_linearContrast.setForeground(new Color(0,0,0));
+		
+		sidePanelButton_homogeneousAveragingFilter.setBounds(0,80,200,60);
+		sidePanelButton_homogeneousAveragingFilter.setText("HOMOGENEOUS AVERAGING");
+		sidePanelButton_homogeneousAveragingFilter.setBackground(new Color(254,230,0));
+		sidePanelButton_homogeneousAveragingFilter.setBorderPainted(false);
+		sidePanelButton_homogeneousAveragingFilter.setForeground(new Color(0,0,0));
 		
 		connectResizeEvent();
 		connectActionEvent();
