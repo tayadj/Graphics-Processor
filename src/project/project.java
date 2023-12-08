@@ -11,19 +11,26 @@ public class project {
 
 	public static BufferedImage processingImage;
 	public static BufferedImage resultImage;
-	//public static String inputPath = "C:/Education/Java/Eclipse/eclipse-workspace/GraphicsProcessor/data/Fig3.15(a)1top.bmp";
-	//public static String inputPath = "C:/Education/Java/Eclipse/eclipse-workspace/GraphicsProcessor/data/Fig5.04(i).bmp";
-	public static String inputPath = "C:/Education/Java/Eclipse/eclipse-workspace/GraphicsProcessor/data/Fig3.35(a).bmp";
-	public static String outputPath = "C:/Education/Java/Eclipse/eclipse-workspace/GraphicsProcessor/data/JavaResult";
 	public static Image sourceImage;
 	public static File inputFile;
 	public static File outputFile;
 	
-	public static void processor(int mode) 
+	public static void processor(int mode, int flag, String inputPath) 
 	throws IOException
-	{
+	{		
 		try
 		{
+			try
+			{
+				inputFile = new File(inputPath);
+				sourceImage = ImageIO.read(inputFile);
+			}
+			catch (Exception error) 
+			{ 
+	            System.err.println("Oops! " + error);
+	            System.exit(0);
+	        }
+			
 			switch (mode)
 			{
 				case 1:
@@ -33,14 +40,14 @@ public class project {
 				}
 				case 2:
 				{
-					resultImage = homogeneousAveragingFilter.process(sourceImage, inputFile, 1);
+					resultImage = homogeneousAveragingFilter.process(sourceImage, inputFile, flag);
 					break;
 				}
 			}
 			
 			try
 			{
-				outputFile = new File(outputPath+mode+3+".png"); 
+				outputFile = new File(inputPath+"_PROCESSED_"+mode+".png"); 
 	            ImageIO.write(resultImage, "png", outputFile); 
 			}
 			catch (Exception error) 
@@ -58,18 +65,7 @@ public class project {
 	
 	public static void main(String args[])
 	throws IOException
-	{
-		try
-		{
-			inputFile = new File(inputPath);
-			sourceImage = ImageIO.read(inputFile);
-		}
-		catch (Exception error) 
-		{ 
-            System.err.println("Oops! " + error);
-            System.exit(0);
-        }
-		
+	{		
 		application.showGUI();
 	}
 	
