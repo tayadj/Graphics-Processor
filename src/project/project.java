@@ -43,6 +43,11 @@ public class project {
 					resultImage = homogeneousAveragingFilter.process(sourceImage, inputFile, flag);
 					break;
 				}
+				case 3:
+				{
+					resultImage = gaussianFilter.process(sourceImage, inputFile, flag);
+					break;
+				}
 			}
 			
 			try
