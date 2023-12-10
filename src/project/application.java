@@ -1,7 +1,11 @@
 package project;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.*;
+import java.awt.image.*;
+import java.io.File;
+import java.io.IOException;
 import java.awt.*;
 
 public class application
@@ -16,8 +20,11 @@ public class application
 	public static JButton sidePanelButton_medianFilter				  	= new JButton();
 	public static JButton sidePanelButton_maximumFilter				  	= new JButton();
 	public static JButton sidePanelButton_minimumFilter				  	= new JButton();
+	public static JLabel fileImage										= new JLabel();
 	
 	public static String filePath;
+	public static Image fileSourceImage;
+	public static BufferedImage fileBufferedImage;
 	
 	public static void connectResizeEvent() 
 	{
@@ -34,6 +41,18 @@ public class application
 	
 	public static void connectActionEvent()
 	{
+		mainFrame.addWindowListener
+		(
+			new WindowAdapter()
+			{
+			    @Override
+			    public void windowClosing(WindowEvent e) 
+			    {
+			        System.exit(0);
+			    }
+			}
+		);
+		
 		sidePanelButton_chooseFile.addActionListener
 		(
 			new ActionListener()
@@ -46,7 +65,42 @@ public class application
 					
 					if (result == JFileChooser.APPROVE_OPTION)
 					{
-					    filePath = fileChooser.getSelectedFile().getPath();
+					    try
+					    {
+					    	filePath = fileChooser.getSelectedFile().getPath();
+							fileSourceImage = ImageIO.read(new File(filePath));
+							fileBufferedImage = new BufferedImage(fileSourceImage.getWidth(null), fileSourceImage.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+						    fileBufferedImage = ImageIO.read(new File(filePath));
+					    }
+						catch (Exception error) 
+						{ 
+				            System.err.println("Oops! " + error);
+				            System.exit(0);
+				        }
+					   
+					    // You need to set here the logic of autosizing image in application
+					    /*if (fileBufferedImage.getWidth() > fileBufferedImage.getHeight())
+					    {
+					    	fileImage.setBounds(340, 20, 460, fileBufferedImage.getHeight());
+					    }
+					    else if (fileBufferedImage.getWidth() > fileBufferedImage.getHeight())
+					    {
+					    	fileImage.setBounds(340, 20, fileBufferedImage.getWidth(), 460);
+					    }
+					    else 
+					    {
+					    	fileImage.setBounds(340, 20, 460, 460);
+					    }*/			
+					    
+					    fileImage.setBounds(340, 20, fileBufferedImage.getWidth(), fileBufferedImage.getHeight());
+						fileImage.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, new Color(0,0,0)));
+					    fileImage.setIcon(new ImageIcon(fileBufferedImage));
+					    
+					    /*  ImageIcon imageIcon = new ImageIcon("./img/imageName.png"); // load the image to a imageIcon
+							Image image = imageIcon.getImage(); // transform it
+							Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+							imageIcon = new ImageIcon(newimg);  // transform it back
+					    */
 					}
 				}
 			}
@@ -345,10 +399,11 @@ public class application
 		mainFrame.setTitle("Graphics Processor");
 		mainFrame.getContentPane().setBackground(new Color(255,255,255));
 		mainFrame.setMinimumSize(new Dimension(720,540));
-		mainFrame.setSize(720,540);
+		mainFrame.setSize(900,540);
 		mainFrame.setVisible(true);	
 		mainFrame.setLayout(null);		
 		mainFrame.add(sidePanel);
+		mainFrame.add(fileImage);
 		
 		sidePanel.setBounds(20, 20, 260, 440);
 		sidePanel.setBackground(new Color(255,255,255));
@@ -360,7 +415,7 @@ public class application
 		sidePanel.add(sidePanelButton_laplacianOfGaussContrast);	
 		sidePanel.add(sidePanelButton_medianFilter);
 		sidePanel.add(sidePanelButton_maximumFilter);
-		sidePanel.add(sidePanelButton_minimumFilter);
+		sidePanel.add(sidePanelButton_minimumFilter);		
 		
 		sidePanelButton_chooseFile.setBounds(0,0,240,40);
 		sidePanelButton_chooseFile.setText("CHOOSE FILE");
@@ -408,7 +463,7 @@ public class application
 		sidePanelButton_minimumFilter.setText("MINIMUM FILTER");
 		sidePanelButton_minimumFilter.setBackground(new Color(254,230,0));
 		sidePanelButton_minimumFilter.setBorderPainted(false);
-		sidePanelButton_minimumFilter.setForeground(new Color(0,0,0));
+		sidePanelButton_minimumFilter.setForeground(new Color(0,0,0));	
 		
 		connectResizeEvent();
 		connectActionEvent();
