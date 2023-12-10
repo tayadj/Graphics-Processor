@@ -53,6 +53,21 @@ public class project {
 					resultImage = laplacianOfGaussContrast.process(sourceImage, inputFile);
 					break;
 				}	
+				case 5:
+				{
+					resultImage = medianFilter.process(sourceImage, inputFile);
+					break;
+				}
+				case 6:
+				{
+					resultImage = maximumFilter.process(sourceImage, inputFile);
+					break;
+				}
+				case 7:
+				{
+					resultImage = minimumFilter.process(sourceImage, inputFile);
+					break;
+				}
 			}
 			
 			try

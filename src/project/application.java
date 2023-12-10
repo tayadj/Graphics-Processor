@@ -13,6 +13,9 @@ public class application
 	public static JButton sidePanelButton_homogeneousAveragingFilter 	= new JButton();
 	public static JButton sidePanelButton_gaussianFilter				= new JButton();
 	public static JButton sidePanelButton_laplacianOfGaussContrast  	= new JButton();
+	public static JButton sidePanelButton_medianFilter				  	= new JButton();
+	public static JButton sidePanelButton_maximumFilter				  	= new JButton();
+	public static JButton sidePanelButton_minimumFilter				  	= new JButton();
 	
 	public static String filePath;
 	
@@ -128,6 +131,66 @@ public class application
 				}
 			}
 		);
+		
+		sidePanelButton_medianFilter.addActionListener
+		(
+			new ActionListener()
+			{
+				@Override
+				public void actionPerformed(ActionEvent event)
+				{
+					try
+					{
+						project.processor(5, 0, filePath);
+					} 
+					catch (Exception error) 
+					{ 
+			            System.err.println("Oops! " + error);
+			            System.exit(0);
+			        }
+				}
+			}
+		);
+		
+		sidePanelButton_maximumFilter.addActionListener
+		(
+			new ActionListener()
+			{
+				@Override
+				public void actionPerformed(ActionEvent event)
+				{
+					try
+					{
+						project.processor(6, 0, filePath);
+					} 
+					catch (Exception error) 
+					{ 
+			            System.err.println("Oops! " + error);
+			            System.exit(0);
+			        }
+				}
+			}
+		);
+		
+		sidePanelButton_minimumFilter.addActionListener
+		(
+			new ActionListener()
+			{
+				@Override
+				public void actionPerformed(ActionEvent event)
+				{
+					try
+					{
+						project.processor(7, 0, filePath);
+					} 
+					catch (Exception error) 
+					{ 
+			            System.err.println("Oops! " + error);
+			            System.exit(0);
+			        }
+				}
+			}
+		);
 	}
 	
 	public static void connectMouseEvent()
@@ -221,6 +284,60 @@ public class application
 					}
 				}
 		);
+		
+		sidePanelButton_medianFilter.addMouseListener
+		(
+				new MouseAdapter()
+				{
+					public void mouseEntered(MouseEvent event)
+					{
+						sidePanelButton_medianFilter.setBackground(new Color(0,0,0));
+						sidePanelButton_medianFilter.setForeground(new Color(254,230,0));
+					}
+					
+					public void mouseExited(MouseEvent event)
+					{
+						sidePanelButton_medianFilter.setBackground(new Color(254,230,0));
+						sidePanelButton_medianFilter.setForeground(new Color(0,0,0));
+					}
+				}
+		);
+		
+		sidePanelButton_maximumFilter.addMouseListener
+		(
+				new MouseAdapter()
+				{
+					public void mouseEntered(MouseEvent event)
+					{
+						sidePanelButton_maximumFilter.setBackground(new Color(0,0,0));
+						sidePanelButton_maximumFilter.setForeground(new Color(254,230,0));
+					}
+					
+					public void mouseExited(MouseEvent event)
+					{
+						sidePanelButton_maximumFilter.setBackground(new Color(254,230,0));
+						sidePanelButton_maximumFilter.setForeground(new Color(0,0,0));
+					}
+				}
+		);
+		
+		sidePanelButton_minimumFilter.addMouseListener
+		(
+				new MouseAdapter()
+				{
+					public void mouseEntered(MouseEvent event)
+					{
+						sidePanelButton_minimumFilter.setBackground(new Color(0,0,0));
+						sidePanelButton_minimumFilter.setForeground(new Color(254,230,0));
+					}
+					
+					public void mouseExited(MouseEvent event)
+					{
+						sidePanelButton_minimumFilter.setBackground(new Color(254,230,0));
+						sidePanelButton_minimumFilter.setForeground(new Color(0,0,0));
+					}
+				}
+		);
 	}
 	
 	public static void showGUI()
@@ -240,7 +357,10 @@ public class application
 		sidePanel.add(sidePanelButton_linearContrast);
 		sidePanel.add(sidePanelButton_homogeneousAveragingFilter);
 		sidePanel.add(sidePanelButton_gaussianFilter);
-		sidePanel.add(sidePanelButton_laplacianOfGaussContrast);		
+		sidePanel.add(sidePanelButton_laplacianOfGaussContrast);	
+		sidePanel.add(sidePanelButton_medianFilter);
+		sidePanel.add(sidePanelButton_maximumFilter);
+		sidePanel.add(sidePanelButton_minimumFilter);
 		
 		sidePanelButton_chooseFile.setBounds(0,0,240,40);
 		sidePanelButton_chooseFile.setText("CHOOSE FILE");
@@ -271,6 +391,24 @@ public class application
 		sidePanelButton_laplacianOfGaussContrast.setBackground(new Color(254,230,0));
 		sidePanelButton_laplacianOfGaussContrast.setBorderPainted(false);
 		sidePanelButton_laplacianOfGaussContrast.setForeground(new Color(0,0,0));
+		
+		sidePanelButton_medianFilter.setBounds(0,300,240,40);
+		sidePanelButton_medianFilter.setText("MEDIAN FILTER");
+		sidePanelButton_medianFilter.setBackground(new Color(254,230,0));
+		sidePanelButton_medianFilter.setBorderPainted(false);
+		sidePanelButton_medianFilter.setForeground(new Color(0,0,0));
+		
+		sidePanelButton_maximumFilter.setBounds(0,360,240,40);
+		sidePanelButton_maximumFilter.setText("MAXIMUM FILTER");
+		sidePanelButton_maximumFilter.setBackground(new Color(254,230,0));
+		sidePanelButton_maximumFilter.setBorderPainted(false);
+		sidePanelButton_maximumFilter.setForeground(new Color(0,0,0));
+		
+		sidePanelButton_minimumFilter.setBounds(0,420,240,40);
+		sidePanelButton_minimumFilter.setText("MINIMUM FILTER");
+		sidePanelButton_minimumFilter.setBackground(new Color(254,230,0));
+		sidePanelButton_minimumFilter.setBorderPainted(false);
+		sidePanelButton_minimumFilter.setForeground(new Color(0,0,0));
 		
 		connectResizeEvent();
 		connectActionEvent();
