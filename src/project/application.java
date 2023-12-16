@@ -387,16 +387,7 @@ public class application
 	}
 	
 	public static void showGUI()
-	{		
-		mainFrame.setTitle("Graphics Processor");
-		mainFrame.getContentPane().setBackground(new Color(255,255,255));
-		mainFrame.setMinimumSize(new Dimension(720,540));
-		mainFrame.setSize(900,540);
-		mainFrame.setVisible(true);	
-		mainFrame.setLayout(null);		
-		mainFrame.add(sidePanel);
-		mainFrame.add(fileImage);
-		
+	{			
 		sidePanel.setBounds(20, 20, 260, 440);
 		sidePanel.setBackground(new Color(255,255,255));
 		sidePanel.setLayout(null);
@@ -456,6 +447,17 @@ public class application
 		sidePanelButton_minimumFilter.setBackground(new Color(254,230,0));
 		sidePanelButton_minimumFilter.setBorderPainted(false);
 		sidePanelButton_minimumFilter.setForeground(new Color(0,0,0));	
+		
+		mainFrame.setTitle("Graphics Processor");
+		mainFrame.getContentPane().setBackground(new Color(255,255,255));
+		mainFrame.setMinimumSize(new Dimension(900,540));
+		mainFrame.setPreferredSize(new Dimension(900,540));
+		mainFrame.setSize(900,540);
+		mainFrame.setVisible(true);	
+		mainFrame.setLayout(null);		
+		mainFrame.add(sidePanel);
+		mainFrame.add(fileImage);
+		mainFrame.pack();
 		
 		connectResizeEvent();
 		connectActionEvent();
