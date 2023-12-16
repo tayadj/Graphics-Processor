@@ -78,29 +78,21 @@ public class application
 				            System.exit(0);
 				        }
 					   
-					    // You need to set here the logic of autosizing image in application
-					    /*if (fileBufferedImage.getWidth() > fileBufferedImage.getHeight())
+					    if (fileBufferedImage.getWidth() > fileBufferedImage.getHeight())
 					    {
-					    	fileImage.setBounds(340, 20, 460, fileBufferedImage.getHeight());
+					    	fileImage.setBounds(340, 20 + (460 - (int) (fileBufferedImage.getHeight()*1.0/(fileBufferedImage.getWidth()*1.0/460)))/2, 460, (int) (fileBufferedImage.getHeight()*1.0/(fileBufferedImage.getWidth()*1.0/460)));
+					    	fileImage.setIcon(new ImageIcon(new ImageIcon(fileBufferedImage).getImage().getScaledInstance(460, (int) (fileBufferedImage.getHeight()*1.0/(fileBufferedImage.getWidth()*1.0/460)), java.awt.Image.SCALE_SMOOTH)));
 					    }
-					    else if (fileBufferedImage.getWidth() > fileBufferedImage.getHeight())
+					    else if (fileBufferedImage.getWidth() < fileBufferedImage.getHeight())
 					    {
-					    	fileImage.setBounds(340, 20, fileBufferedImage.getWidth(), 460);
+					    	fileImage.setBounds(340 + (460 - (int) (fileBufferedImage.getWidth()*1.0/(fileBufferedImage.getHeight()*1.0/460)))/2, 20, (int) (fileBufferedImage.getWidth()*1.0/(fileBufferedImage.getHeight()*1.0/460)), 460);
+					    	fileImage.setIcon(new ImageIcon(new ImageIcon(fileBufferedImage).getImage().getScaledInstance((int) (fileBufferedImage.getWidth()*1.0/(fileBufferedImage.getHeight()*1.0/460)), 460, java.awt.Image.SCALE_SMOOTH)));
 					    }
 					    else 
 					    {
 					    	fileImage.setBounds(340, 20, 460, 460);
-					    }*/			
-					    
-					    fileImage.setBounds(340, 20, fileBufferedImage.getWidth(), fileBufferedImage.getHeight());
-						fileImage.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, new Color(0,0,0)));
-					    fileImage.setIcon(new ImageIcon(fileBufferedImage));
-					    
-					    /*  ImageIcon imageIcon = new ImageIcon("./img/imageName.png"); // load the image to a imageIcon
-							Image image = imageIcon.getImage(); // transform it
-							Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-							imageIcon = new ImageIcon(newimg);  // transform it back
-					    */
+					    	fileImage.setIcon(new ImageIcon(new ImageIcon(fileBufferedImage).getImage().getScaledInstance(460, 460, java.awt.Image.SCALE_SMOOTH)));
+					    }
 					}
 				}
 			}
