@@ -1,6 +1,10 @@
 package algorithms;
 
 import javax.imageio.*;
+import javax.swing.ImageIcon;
+
+import project.application;
+
 import java.awt.image.*;
 import java.awt.*;
 import java.io.*;
@@ -50,6 +54,22 @@ public class medianFilter
 				resultImage.setRGB(x, y, valueRGB);				
 			}
 		}
+		
+		if (resultImage.getWidth() > resultImage.getHeight())
+	    {
+			application.fileImage.setBounds(340, 20 + (460 - (int) (resultImage.getHeight()*1.0/(resultImage.getWidth()*1.0/460)))/2, 460, (int) (resultImage.getHeight()*1.0/(resultImage.getWidth()*1.0/460)));
+			application.fileImage.setIcon(new ImageIcon(new ImageIcon(resultImage).getImage().getScaledInstance(460, (int) (resultImage.getHeight()*1.0/(resultImage.getWidth()*1.0/460)), java.awt.Image.SCALE_SMOOTH)));
+	    }
+	    else if (resultImage.getWidth() < resultImage.getHeight())
+	    {
+	    	application.fileImage.setBounds(340 + (460 - (int) (resultImage.getWidth()*1.0/(resultImage.getHeight()*1.0/460)))/2, 20, (int) (resultImage.getWidth()*1.0/(resultImage.getHeight()*1.0/460)), 460);
+	    	application.fileImage.setIcon(new ImageIcon(new ImageIcon(resultImage).getImage().getScaledInstance((int) (resultImage.getWidth()*1.0/(resultImage.getHeight()*1.0/460)), 460, java.awt.Image.SCALE_SMOOTH)));
+	    }
+	    else 
+	    {
+	    	application.fileImage.setBounds(340, 20, 460, 460);
+	    	application.fileImage.setIcon(new ImageIcon(new ImageIcon(resultImage).getImage().getScaledInstance(460, 460, java.awt.Image.SCALE_SMOOTH)));
+	    }
 		
 		return resultImage;
 	}
