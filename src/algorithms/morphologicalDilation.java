@@ -9,7 +9,7 @@ import java.awt.image.*;
 import java.awt.*;
 import java.io.*;
 
-public class morphologicalErosion
+public class morphologicalDilation
 {
 
 	public static BufferedImage resultImage;
@@ -22,6 +22,8 @@ public class morphologicalErosion
 		resultImage = new BufferedImage(sourceImage.getWidth(null), sourceImage.getHeight(null), BufferedImage.TYPE_INT_ARGB);
 		processingImage = ImageIO.read(inputFile);
 		
+		
+		// You need to implement dilation of image.
 		int valueRGB, valueA = 0, valueR = 0, valueG = 0, valueB = 0;
 		boolean flag = true;
 		for (int x = 2; x < sourceImage.getWidth(null) - 2; ++x) 
@@ -93,4 +95,3 @@ public class morphologicalErosion
 	}
 
 }
-

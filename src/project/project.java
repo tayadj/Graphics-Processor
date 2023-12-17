@@ -75,7 +75,27 @@ public class project {
 					mask[1][2] = true;
 					mask[2][1] = true;
 					mask[2][2] = true;
+					mask[1][3] = true;
+					mask[2][3] = true;
+					mask[3][1] = true;
+					mask[3][2] = true;
+					mask[3][3] = true;
 					resultImage = morphologicalErosion.process(sourceImage, inputFile, mask);
+					break;
+				}	
+				case 9:
+				{
+					boolean[][] mask = new boolean[5][5];
+					mask[1][1] = true;
+					mask[1][2] = true;
+					mask[2][1] = true;
+					mask[2][2] = true;
+					mask[1][3] = true;
+					mask[2][3] = true;
+					mask[3][1] = true;
+					mask[3][2] = true;
+					mask[3][3] = true;
+					resultImage = morphologicalDilation.process(sourceImage, inputFile, mask);
 					break;
 				}	
 			}
