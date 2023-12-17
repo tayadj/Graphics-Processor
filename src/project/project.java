@@ -68,6 +68,16 @@ public class project {
 					resultImage = minimumFilter.process(sourceImage, inputFile);
 					break;
 				}
+				case 8:
+				{
+					boolean[][] mask = new boolean[5][5];
+					mask[1][1] = true;
+					mask[1][2] = true;
+					mask[2][1] = true;
+					mask[2][2] = true;
+					resultImage = morphologicalErosion.process(sourceImage, inputFile, mask);
+					break;
+				}	
 			}
 			
 			try

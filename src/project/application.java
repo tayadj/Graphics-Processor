@@ -4,8 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.image.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.awt.*;
 
 public class application
@@ -20,6 +19,7 @@ public class application
 	public static JButton sidePanelButton_medianFilter				  	= new JButton();
 	public static JButton sidePanelButton_maximumFilter				  	= new JButton();
 	public static JButton sidePanelButton_minimumFilter				  	= new JButton();
+	public static JButton sidePanelButton_morphologicalProcessing		= new JButton();
 	public static JLabel fileImage										= new JLabel();
 	
 	public static String filePath;
@@ -237,6 +237,26 @@ public class application
 				}
 			}
 		);
+		
+		sidePanelButton_morphologicalProcessing.addActionListener
+		(
+			new ActionListener()
+			{
+				@Override
+				public void actionPerformed(ActionEvent event)
+				{
+					try
+					{
+						project.processor(8, 0, filePath);
+					} 
+					catch (Exception error) 
+					{ 
+			            System.err.println("Oops! " + error);
+			            System.exit(0);
+			        }
+				}
+			}
+		);
 	}
 	
 	public static void connectMouseEvent()
@@ -384,6 +404,24 @@ public class application
 					}
 				}
 		);
+		
+		sidePanelButton_morphologicalProcessing.addMouseListener
+		(
+				new MouseAdapter()
+				{
+					public void mouseEntered(MouseEvent event)
+					{
+						sidePanelButton_morphologicalProcessing.setBackground(new Color(0,0,0));
+						sidePanelButton_morphologicalProcessing.setForeground(new Color(254,230,0));
+					}
+					
+					public void mouseExited(MouseEvent event)
+					{
+						sidePanelButton_morphologicalProcessing.setBackground(new Color(254,230,0));
+						sidePanelButton_morphologicalProcessing.setForeground(new Color(0,0,0));
+					}
+				}
+		);
 	}
 	
 	public static void showGUI()
@@ -398,7 +436,8 @@ public class application
 		sidePanel.add(sidePanelButton_laplacianOfGaussContrast);	
 		sidePanel.add(sidePanelButton_medianFilter);
 		sidePanel.add(sidePanelButton_maximumFilter);
-		sidePanel.add(sidePanelButton_minimumFilter);		
+		sidePanel.add(sidePanelButton_minimumFilter);	
+		sidePanel.add(sidePanelButton_morphologicalProcessing);
 		
 		sidePanelButton_chooseFile.setBounds(0,0,240,40);
 		sidePanelButton_chooseFile.setText("CHOOSE FILE");
@@ -447,6 +486,12 @@ public class application
 		sidePanelButton_minimumFilter.setBackground(new Color(254,230,0));
 		sidePanelButton_minimumFilter.setBorderPainted(false);
 		sidePanelButton_minimumFilter.setForeground(new Color(0,0,0));	
+		
+		sidePanelButton_morphologicalProcessing.setBounds(0,480,240,40);
+		sidePanelButton_morphologicalProcessing.setText("MORPHOLOGICAL PROCESSING");
+		sidePanelButton_morphologicalProcessing.setBackground(new Color(254,230,0));
+		sidePanelButton_morphologicalProcessing.setBorderPainted(false);
+		sidePanelButton_morphologicalProcessing.setForeground(new Color(0,0,0));	
 		
 		mainFrame.setTitle("Graphics Processor");
 		mainFrame.getContentPane().setBackground(new Color(255,255,255));
