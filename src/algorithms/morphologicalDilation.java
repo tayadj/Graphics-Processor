@@ -47,6 +47,10 @@ public class morphologicalDilation
 				}
 				
 				valueRGB = (valueA << 24) | (valueR << 16) | (valueG << 8) | valueB;
+				if (valueRGB == 0)
+				{
+					valueRGB = processingImage.getRGB(x, y);
+				}				
 				resultImage.setRGB(x, y, valueRGB);	
 			}
 		}

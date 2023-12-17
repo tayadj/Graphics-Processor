@@ -3,6 +3,8 @@ package project;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import forms.morphologicalMask;
+
 import java.awt.event.*;
 import java.awt.image.*;
 import java.io.*;
@@ -109,7 +111,7 @@ public class application
 				{
 					try
 					{
-						project.processor(1, 0, filePath);
+						project.processor(1, 0, null, filePath);
 					} 
 					catch (Exception error) 
 					{ 
@@ -129,7 +131,7 @@ public class application
 				{
 					try
 					{
-						project.processor(2, 1, filePath);
+						project.processor(2, 1, null, filePath);
 					} 
 					catch (Exception error) 
 					{ 
@@ -149,7 +151,7 @@ public class application
 				{
 					try
 					{
-						project.processor(3, 2, filePath);
+						project.processor(3, 2, null, filePath);
 					} 
 					catch (Exception error) 
 					{ 
@@ -169,7 +171,7 @@ public class application
 				{
 					try
 					{
-						project.processor(4, 0, filePath);
+						project.processor(4, 0, null, filePath);
 					} 
 					catch (Exception error) 
 					{ 
@@ -189,7 +191,7 @@ public class application
 				{
 					try
 					{
-						project.processor(5, 0, filePath);
+						project.processor(5, 0, null, filePath);
 					} 
 					catch (Exception error) 
 					{ 
@@ -209,7 +211,7 @@ public class application
 				{
 					try
 					{
-						project.processor(6, 0, filePath);
+						project.processor(6, 0, null, filePath);
 					} 
 					catch (Exception error) 
 					{ 
@@ -229,7 +231,7 @@ public class application
 				{
 					try
 					{
-						project.processor(7, 0, filePath);
+						project.processor(7, 0, null, filePath);
 					} 
 					catch (Exception error) 
 					{ 
@@ -249,7 +251,7 @@ public class application
 				{
 					try
 					{
-						project.processor(8, 0, filePath);
+						morphologicalMask.evoke(8, filePath);
 					} 
 					catch (Exception error) 
 					{ 
@@ -269,7 +271,7 @@ public class application
 				{
 					try
 					{
-						project.processor(9, 0, filePath);
+						morphologicalMask.evoke(9, filePath);
 					} 
 					catch (Exception error) 
 					{ 

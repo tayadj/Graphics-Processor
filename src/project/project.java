@@ -1,7 +1,6 @@
 package project;
   
 import algorithms.*;
-import forms.*;
 
 import javax.imageio.*;
 import java.awt.image.*;
@@ -16,7 +15,7 @@ public class project {
 	public static File inputFile;
 	public static File outputFile;
 	
-	public static void processor(int mode, int flag, String inputPath) 
+	public static void processor(int mode, int flag, boolean[][] mask, String inputPath) 
 	throws IOException
 	{		
 		try
@@ -71,13 +70,11 @@ public class project {
 				}
 				case 8:
 				{
-					boolean[][] mask = morphologicalMask.evoke();
 					resultImage = morphologicalErosion.process(sourceImage, inputFile, mask);
 					break;
 				}	
 				case 9:
 				{
-					boolean[][] mask = morphologicalMask.evoke();
 					resultImage = morphologicalDilation.process(sourceImage, inputFile, mask);
 					break;
 				}	
