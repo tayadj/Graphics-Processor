@@ -1,3 +1,4 @@
-module GraphicsProcessor {
+module GraphicsProcessor
+{
 	requires java.desktop;
 }
