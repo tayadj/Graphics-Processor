@@ -1,6 +1,7 @@
 package project;
   
 import algorithms.*;
+import forms.*;
 
 import javax.imageio.*;
 import java.awt.image.*;
@@ -70,23 +71,13 @@ public class project {
 				}
 				case 8:
 				{
-					boolean[][] mask = new boolean[5][5];
-					mask[0][2] = true;
-					mask[1][2] = true;
-					mask[2][2] = true;
-					mask[3][2] = true;
-					mask[4][2] = true;
+					boolean[][] mask = morphologicalMask.evoke();
 					resultImage = morphologicalErosion.process(sourceImage, inputFile, mask);
 					break;
 				}	
 				case 9:
 				{
-					boolean[][] mask = new boolean[5][5];
-					mask[0][2] = true;
-					mask[1][2] = true;
-					mask[2][2] = true;
-					mask[3][2] = true;
-					mask[4][2] = true;
+					boolean[][] mask = morphologicalMask.evoke();
 					resultImage = morphologicalDilation.process(sourceImage, inputFile, mask);
 					break;
 				}	
