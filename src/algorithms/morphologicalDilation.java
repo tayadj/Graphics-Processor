@@ -22,56 +22,32 @@ public class morphologicalDilation
 		resultImage = new BufferedImage(sourceImage.getWidth(null), sourceImage.getHeight(null), BufferedImage.TYPE_INT_ARGB);
 		processingImage = ImageIO.read(inputFile);
 		
-		
-		// You need to implement dilation of image.
 		int valueRGB, valueA = 0, valueR = 0, valueG = 0, valueB = 0;
-		boolean flag = true;
 		for (int x = 2; x < sourceImage.getWidth(null) - 2; ++x) 
 		{
 			for (int y = 2; y < sourceImage.getHeight(null) - 2; ++y)
 			{
-				flag = true;
+				valueA = 0;
+				valueR = 0;
+				valueG = 0;
+				valueB = 0;
+				
 				for (int sector_x = x - 2; sector_x <= x + 2; ++sector_x)
 				{
 					for (int sector_y = y - 2; sector_y <= y + 2; ++sector_y)
-					{
-						valueA = ((processingImage.getRGB(sector_x, sector_y)) >> 24) & 0xff;
-						valueR = ((processingImage.getRGB(sector_x, sector_y)) >> 16) & 0xff;
-						valueG = ((processingImage.getRGB(sector_x, sector_y)) >> 8) & 0xff;
-						valueB = ((processingImage.getRGB(sector_x, sector_y))) & 0xff;
-						
-						if (mask[sector_x - x + 2][sector_y - y + 2] == true && valueR == 0)
+					{				
+						if (mask[sector_x - x + 2][sector_y - y + 2] == true)
 						{
-							flag = false;
-							break;
-						}
-						if (mask[sector_x - x + 2][sector_y - y + 2] == true && valueG == 0)
-						{
-							flag = false;
-							break;
-						}
-						if (mask[sector_x - x + 2][sector_y - y + 2] == true && valueB == 0)
-						{
-							flag = false;
-							break;
+							valueA = Math.max(((processingImage.getRGB(sector_x, sector_y)) >> 24) & 0xff, valueA);
+							valueR = Math.max(((processingImage.getRGB(sector_x, sector_y)) >> 16) & 0xff, valueR);
+							valueG = Math.max(((processingImage.getRGB(sector_x, sector_y)) >> 8) & 0xff, valueG);
+							valueB = Math.max(((processingImage.getRGB(sector_x, sector_y))) & 0xff, valueB);
 						}
 					}
 				}
 				
-				valueA = ((processingImage.getRGB(x, y)) >> 24) & 0xff;
-				valueR = ((processingImage.getRGB(x, y)) >> 16) & 0xff;
-				valueG = ((processingImage.getRGB(x, y)) >> 8) & 0xff;
-				valueB = ((processingImage.getRGB(x, y))) & 0xff;
-				
-				if (flag)
-				{
-					valueRGB = (valueA << 24) | (valueR << 16) | (valueG << 8) | valueB;
-					resultImage.setRGB(x, y, valueRGB);	
-				}
-				else
-				{
-					resultImage.setRGB(x, y, valueA << 24);	
-				}
+				valueRGB = (valueA << 24) | (valueR << 16) | (valueG << 8) | valueB;
+				resultImage.setRGB(x, y, valueRGB);	
 			}
 		}
 		
